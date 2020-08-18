@@ -8,26 +8,9 @@ import { motion, useCycle } from 'framer-motion';
 const MotionFlex = motion.custom(Flex);
 const MotionText = motion.custom(Text);
 const MotionButton = motion.custom(Button);
-const MotionHeading = motion.custom(Heading);
-
-const MenuItems = ({ children, to }) => (
-	<Link to={to}>
-		<MotionText
-			whileHover={{ opacity: 0.8, scale: 1.1 }}
-			onTap={{ opacity: 1, scale: 0.8 }}
-			mr={[ 0, 0, 5, 10 ]}
-			mt={[ 5, 5, 0, 0 ]}
-			fontSize="lg"
-			display="block"
-		>
-			{children}
-		</MotionText>
-	</Link>
-);
 
 const Navbar = (props) => {
 	const [ show, setShow ] = React.useState(false);
-	const handleToggle = () => setShow(!show);
 	const [ isOpen, toggleOpen ] = useCycle(false, true);
 	const { changeLocation } = useContext(LocationContext);
 	const sidebar = {
@@ -48,6 +31,22 @@ const Navbar = (props) => {
 			}
 		}
 	};
+
+	const MenuItems = ({ children, to }) => (
+		<Link to={to}>
+			<MotionText
+				whileHover={{ opacity: 0.8, scale: 1.1 }}
+				onTap={{ opacity: 1, scale: 0.8 }}
+				mr={[ 0, 0, 5, 10 ]}
+				mt={[ 5, 5, 0, 0 ]}
+				fontSize="lg"
+				display="block"
+				onClick={toggleOpen}
+			>
+				{children}
+			</MotionText>
+		</Link>
+	);
 
 	return (
 		<Flex
