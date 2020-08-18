@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Heading, Flex, Text, Button, Icon } from '@chakra-ui/core';
+import { Box, Heading, Flex, Text, Button, Icon, IconButton } from '@chakra-ui/core';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { LocationContext } from '../utils/LocationContext';
@@ -66,7 +66,7 @@ const Navbar = (props) => {
 			marginBottom="2rem"
 		>
 			<Flex align="center" mr={5}>
-				<Icon name="sun" mr="0.7rem" size="45px" onClick={() => toggleOpen()} />
+				<Icon name="sun" mr="0.7rem" size="45px" />
 
 				<Heading as="h1" size="xl">
 					Drizzle
@@ -77,29 +77,50 @@ const Navbar = (props) => {
 					color="gray.700"
 					position="absolute"
 					top={0}
-					left={0}
+					right={0}
 					bg="gray.300"
 					align="center"
 					direction="column"
+					w="50vw"
+					p={5}
 					h="100vh"
 					variants={sidebar}
 				>
-					<MotionHeading size="lg" mt={2} mb={2}>
+					<IconButton bg="transparent" icon="close" onClick={() => toggleOpen(!isOpen)} />
+
+					{/* <MotionHeading size="lg" mt={2} mb={2}>
 						Home
 					</MotionHeading>
-					<MotionHeading size="lg" mt={2} mb={2}>
+
+					<MotionHeading size="lg" mt={2} mb={2} borderRadius={50} color='gray.700'>
 						Weather
 					</MotionHeading>
 					<MotionHeading size="lg" mt={2} mb={2}>
 						Calendar
-					</MotionHeading>
-					<Button onClick={() => toggleOpen(!isOpen)} w={[ '2xs', 'xs', 'sm', 'sm' ]}>
-						Close
-					</Button>
+					</MotionHeading> */}
+
+					<MenuItems to="/">Home</MenuItems>
+					<MenuItems to="/weather">Weather</MenuItems>
+					<MenuItems to="/calendar">Calendar</MenuItems>
+
+					<MotionButton
+						whileHover={{ opacity: 0.7, transition: { duration: 0.02 } }}
+						mt={[ 5, 5, 0, 0 ]}
+						color="gray.600"
+						border="1px"
+						borderRadius={40}
+						onClick={() => {
+							var newCity = prompt('Enter the city');
+							if (newCity) changeLocation(newCity);
+							else alert('Enter a valid city name');
+						}}
+					>
+						Change Location
+					</MotionButton>
 				</MotionFlex>
 			</MotionFlex>
 
-			<Box display={{ base: 'block', md: 'none' }} onClick={()=>toggleOpen(!isOpen)}>
+			<Box display={{ base: 'block', md: 'none' }} onClick={() => toggleOpen(!isOpen)}>
 				<svg fill="white" width="12px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
 					<title>Menu</title>
 					<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
@@ -125,7 +146,7 @@ const Navbar = (props) => {
 						onClick={() => {
 							var newCity = prompt('Enter the city');
 							if (newCity) changeLocation(newCity);
-							else alert('Enter a valid city name')
+							else alert('Enter a valid city name');
 						}}
 					>
 						Change Location
