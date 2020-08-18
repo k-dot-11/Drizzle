@@ -41,7 +41,9 @@ const Navbar = (props) => {
 				mt={[ 5, 5, 0, 0 ]}
 				fontSize="lg"
 				display="block"
-				onClick={()=>{toggleOpen(!isOpen}}
+				onClick={() => {
+					toggleOpen(!isOpen);
+				}}
 			>
 				{children}
 			</MotionText>
