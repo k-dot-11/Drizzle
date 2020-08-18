@@ -11,6 +11,7 @@ const Calendar = () => {
 	return (
 		<MotionFlex
 			flexDirection="column"
+			py={20}
 			initial="initial"
 			animate="in"
 			exit="out"

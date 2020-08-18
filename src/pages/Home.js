@@ -31,10 +31,15 @@ const Home = () => {
 		[ refreshToggle ]
 	);
 	return (
-		<motion.div
+		<MotionFlex
 			initial="initial"
 			animate="in"
-            exit="out"
+			mt={50}
+			p={10}
+			direction='column'
+			exit="out"
+			align='center'
+			justify='center'
 			variants={pageVariants}
 			transition={pageTransition}
 		>
@@ -43,7 +48,7 @@ const Home = () => {
 			<Text>{weatherDesc}</Text>
 			<Text>{temp}</Text>
 			<Text>{feels}</Text>
-		</motion.div>
+		</MotionFlex>
 	);
 };
 

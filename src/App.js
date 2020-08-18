@@ -15,6 +15,7 @@ function App() {
 			<LocationContextProvider>
 				<div className="App" style={{ display: 'flex', flexDirection: 'column' }}>
 					<Navbar changeCity={getCity} />
+					<br/>
 					<AnimatePresence exitBeforeEnter>
 						<Switch location={loc} key={loc.key}>
 							<Route path="/calendar" component={Calendar} />
