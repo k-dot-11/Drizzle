@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Box, Heading, Flex, Text, Button, Icon, IconButton } from '@chakra-ui/core';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
@@ -11,7 +11,7 @@ const MotionButton = motion.custom(Button);
 
 const Navbar = (props) => {
 	const [ show, setShow ] = React.useState(false);
-	const [ isOpen, toggleOpen ] = useCycle(false, true);
+	const [ isOpen, toggleOpen ] = useState(false);
 	const { changeLocation } = useContext(LocationContext);
 	const sidebar = {
 		open: (height = 500) => ({
