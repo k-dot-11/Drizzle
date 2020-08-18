@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Heading, Flex, Text } from '@chakra-ui/core';
 import { LocationContext } from '../utils/LocationContext';
+import { AnimatePresence, motion } from 'framer-motion';
+import { pageTransition, pageStyle, pageVariants } from '../utils/PageAnimations';
+
+const MotionFlex = motion.custom(Flex);
 
 const Home = () => {
 	const { city, refreshToggle } = useContext(LocationContext);
@@ -27,13 +31,19 @@ const Home = () => {
 		[ refreshToggle ]
 	);
 	return (
-		<Flex flexDirection="column">
+		<motion.div
+			initial="initial"
+			animate="in"
+            exit="out"
+			variants={pageVariants}
+			transition={pageTransition}
+		>
 			<Heading>Weather</Heading>
 			<Text>{city.toUpperCase()}</Text>
 			<Text>{weatherDesc}</Text>
 			<Text>{temp}</Text>
 			<Text>{feels}</Text>
-		</Flex>
+		</motion.div>
 	);
 };
 

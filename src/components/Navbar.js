@@ -1,15 +1,25 @@
 import React from 'react';
 import { Box, Heading, Flex, Text, Button, Icon } from '@chakra-ui/core';
 import { Link } from 'react-router-dom';
-import Home from '../pages/Home';
 import { useContext } from 'react';
 import { LocationContext } from '../utils/LocationContext';
+import { motion } from 'framer-motion';
+
+const MotionText = motion.custom(Text);
+const MotionButton = motion.custom(Button);
 
 const MenuItems = ({ children, to }) => (
 	<Link to={to}>
-		<Text mr={[ 0, 0, 5, 10 ]} mt={[ 5, 5, 0, 0 ]} fontSize="lg" display="block">
+		<MotionText
+			whileHover={{ opacity: 0.8, scale: 1.1 }}
+			onTap={{ opacity: 1, scale: 0.8 }}
+			mr={[ 0, 0, 5, 10 ]}
+			mt={[ 5, 5, 0, 0 ]}
+			fontSize="lg"
+			display="block"
+		>
 			{children}
-		</Text>
+		</MotionText>
 	</Link>
 );
 
@@ -55,9 +65,10 @@ const Navbar = (props) => {
 					<MenuItems to="/">Home</MenuItems>
 					<MenuItems to="/weather">Weather</MenuItems>
 					<MenuItems to="/calendar">Calendar</MenuItems>
-					<Button
+					<MotionButton
+						whileHover={{ opacity: 0.7, transition: { duration: 0.02},}}
 						mt={[ 5, 5, 0, 0 ]}
-						bg="transparent"
+						color='gray.600'
 						border="1px"
 						borderRadius={40}
 						onClick={() => {
@@ -66,7 +77,7 @@ const Navbar = (props) => {
 						}}
 					>
 						Change Location
-					</Button>
+					</MotionButton>
 				</Flex>
 			</Box>
 		</Flex>
